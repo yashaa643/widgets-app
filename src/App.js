@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import Search from './components/Search';
+import Translate from './components/Translate';
 
 const items = [
     {
@@ -16,15 +16,40 @@ const items = [
         content: "We use react by creating componenets"
     }
 ]
-class App extends React.Component{
-    render(){
+
+const options = [
+    {
+        label: "The Color Red",
+        value: "red"
+    },
+    {
+        label: "The Color Green",
+        value: "green"
+    },
+    {
+        label: "A shade of blue",
+        value: "blue"
+    }
+];
+const App = () => {
+
+    const [selected,setSelected] = useState(options[0]);
+
         return (
             <div className = "ui container">
                {/* <Accordion items={items}/> */}
-               <Search />
+               {/* <Search /> */}
+               {/* <Dropdown
+               label = "Select a Color"
+               selected = {selected}
+               onSelectedChange = {setSelected}
+               options={options} />
+               <div style = {{color : selected.value}}>
+                     Your Selected Color is {selected.value}
+                </div> */}
+                <Translate />
             </div>
         )
-    }
-}
+};
 
 export default App;
