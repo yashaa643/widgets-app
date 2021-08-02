@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 
+import {
+  BrowserRouter as Router,
+  Link,
+  Route,
+  Switch,
+} from 'react-router-dom';
+
+import Accordion from './components/Accordion';
+import Dropdown from './components/Dropdown';
+import Search from './components/Search';
 import Translate from './components/Translate';
 
 const items = [
@@ -33,23 +43,59 @@ const options = [
 ];
 const App = () => {
 
-    const [selected,setSelected] = useState(options[0]);
+    const [selected, setSelected] = useState(options[0]);
 
-        return (
-            <div className = "ui container">
-               {/* <Accordion items={items}/> */}
-               {/* <Search /> */}
-               {/* <Dropdown
-               label = "Select a Color"
-               selected = {selected}
-               onSelectedChange = {setSelected}
-               options={options} />
-               <div style = {{color : selected.value}}>
-                     Your Selected Color is {selected.value}
-                </div> */}
-                <Translate />
-            </div>
-        )
+    return (
+        <>
+            <Router>
+                <div>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link to="/dropdown">Dropdown</Link>
+                            </li>
+                            <li>
+                                <Link to="/search">Search</Link>
+                            </li>
+                            <li>
+                                <Link to="/translate">Translate</Link>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <div className='ui container'>
+                    <Switch>
+                        <Route path="/dropdown">
+                            <div>
+                              <Dropdown
+                                label="Select a Color"
+                                options={options}
+                                selected={selected}
+                                onSelectedChange={setSelected}
+                            />  
+
+                            <p style={{color: selected.value}}> The Selected Color is {selected.label}</p>
+                            </div>
+                            
+                        </Route>
+                        <Route path="/search">
+                            <Search />
+                        </Route>
+                        <Route path="/translate">
+                            <Translate />
+                        </Route>
+                        <Route path="/">
+                            <Accordion items={items} />
+                        </Route>
+                    </Switch>
+                    </div>
+                </div>
+            </Router>
+        </>
+    )
 };
 
 export default App;

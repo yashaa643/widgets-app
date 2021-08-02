@@ -18,7 +18,7 @@ const Accordion = ({ items }) => {
                     className={`title ${active}`}
                     onClick={() => onTitleClick(index)}>
                     <i className="dropdown icon"
-                />
+                    />
                     {item.title}
                 </div>
                 <div className={`content ${active}`}>
@@ -30,14 +30,14 @@ const Accordion = ({ items }) => {
 
     return (
         <>
-        <div className="ui styled accordion">
-            {renderedItems} <br />
-        </div>
-        <div>
-          Active Index is {activeIndex}  
-        </div>
+            <div className="ui styled accordion">
+                {renderedItems} <br />
+            </div>
+            <div>
+                Active Index is {activeIndex}
+            </div>
         </>
-        
+
     )
 
 }
