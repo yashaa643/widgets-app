@@ -8,13 +8,13 @@ import axios from 'axios';
 const Convert = ({ language, text }) => {
 
     const [translated, setTranslated] = useState('');
-    const [debouncedText, setDebouncedText] = useState('text');
+    const [debouncedText, setDebouncedText] = useState(text);
 
     useEffect(() => {
-        const timerid = setTimeout(setDebouncedText('text'),500);
+        const timerid = setTimeout(setDebouncedText(text),500);
 
         return () => {
-            clearTimeout(timerid)
+            clearTimeout(timerid);
         }
     },[text])
 
